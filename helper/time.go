@@ -134,8 +134,17 @@ func TimeToMomentString(ti time.Time) string {
 	return s
 }
 
+// 修改时区为本地时区
+func TimeToString(t time.Time) string {
+	return t.In(time.Local).Format(TimeFormatStamp)
+}
+
 func GetTimeFormatDayByTimestamp(t int64) string {
 	return time.Unix(t, 0).Format(TimeFormatDay)
+}
+
+func GetTimeFormatDayByTime(t time.Time) string {
+	return t.In(time.Local).Format(TimeFormatDay)
 }
 
 func GetTimeByTimestamp(t int64) time.Time {

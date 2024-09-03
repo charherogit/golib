@@ -1,4 +1,4 @@
-package helper
+package mapx
 
 import (
 	"fmt"
@@ -51,11 +51,11 @@ func SliceToMap[T comparable, U any](slice []U, valueFn func(U) T) map[T]U {
 
 func EqualMap[T comparable, U Integer](m, n map[T]U) error {
 	if len(m) != len(n) {
-		return fmt.Errorf("req len(m): %d != ser len(n): %d map ser n: %v not equal req m: %v", len(m), len(n), n, m)
+		return fmt.Errorf("len(reqMap): %d != len(serMap): %d, reqMap: %v, serMap: %v", len(m), len(n), m, n)
 	}
 	for k, v := range m {
-		if n[k] != v {
-			return fmt.Errorf("ser n[k]: %d != req m[k]: %d map ser n: %v not equal req m: %v", n[k], v, n, m)
+		if v != n[k] {
+			return fmt.Errorf("reqMap id: %v count: %d != ser: %d, reqMap: %v, serMap: %v", k, v, n[k], m, n)
 		}
 	}
 	return nil
@@ -63,8 +63,8 @@ func EqualMap[T comparable, U Integer](m, n map[T]U) error {
 
 func ContainMap[T comparable, U Integer](m, n map[T]U) error {
 	for k, v := range m {
-		if n[k] < v {
-			return fmt.Errorf("ser n[k]: %d < req m[k]: %d map ser n: %v not contain req m: %v", n[k], v, n, m)
+		if v > n[k] {
+			return fmt.Errorf("reqMap id: %v count: %d > ser: %d, reqMap: %v, serMap: %v", k, v, n[k], m, n)
 		}
 	}
 	return nil

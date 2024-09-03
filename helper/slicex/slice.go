@@ -1,4 +1,4 @@
-package helper
+package slicex
 
 import (
 	"errors"
@@ -21,7 +21,7 @@ func FilterSlice[T comparable](s []T, k T) []T {
 	return res
 }
 
-func In[T comparable](s []T, k T) bool {
+func Contains[T comparable](s []T, k T) bool {
 	for _, v := range s {
 		if v == k {
 			return true

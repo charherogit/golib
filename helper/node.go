@@ -1,6 +1,5 @@
 package helper
 
-// Node TODO 合成竞赛排行榜
 // 维护玩家排行榜，支持插入、删除、查找、更新、排序操作
 type Node struct {
 	Val   int // 玩家数据

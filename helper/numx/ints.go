@@ -1,16 +1,9 @@
-package helper
+package numx
 
 import (
 	. "golang.org/x/exp/constraints"
 	"strconv"
 )
-
-func NoErr(f func()) func() error {
-	return func() error {
-		f()
-		return nil
-	}
-}
 
 func I2A[T Signed](i T) string {
 	return strconv.FormatInt(int64(i), 10)
@@ -89,4 +82,12 @@ type Pair[T, U any] struct {
 
 func NewPair[T, U any](f T, s U) *Pair[T, U] {
 	return &Pair[T, U]{First: f, Second: s}
+}
+
+func ToPair[K comparable, V any](m map[K]V) []*Pair[K, V] {
+	list := make([]*Pair[K, V], 0, len(m))
+	for k, v := range m {
+		list = append(list, &Pair[K, V]{First: k, Second: v})
+	}
+	return list
 }
